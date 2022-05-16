@@ -1,6 +1,4 @@
-
 import csv
-from multiprocessing.sharedctypes import Value
 
 
 def search_ip():
@@ -10,7 +8,15 @@ def search_ip():
          search_value = input("please enter the ip address: ")
          for row in file:
              if search_value in row:
-                 print(row) 
+                 print(row)
+                 break
+             else:
+               print("Entry not found please add it: ")
+               add_ip()
+               break
+#search_ip function opens selected csv file and reads it, then based on user input searches the file
+
+
 def add_ip():
     with open ('ipaddr.csv','a') as file:
         #replace 'ipaddr.csv' name of csv file
@@ -22,6 +28,11 @@ def add_ip():
          country = input("please enter the country it is registered in: ")
          myfile.writerow([ip,company,country])
          break
+#add_ip function does what it says. opens the file, and based on user input adds a row to the csv file
+
+#below is the actual program itself, based on user input will run the specified function
+
+
 
 print("""
 ***notice***
@@ -39,10 +50,10 @@ value: """)
 program_choice = int(program_choice)
 if program_choice == 1 :
     search_ip()
-    continue_value = input("would you like to search again? ")
+    continue_value = input("would you like to search again? ('yes' or 'no') ")
     while continue_value == "yes":
         search_ip()
-        continue_value = input("would you like to search again? ('yes' or 'no'")
+        continue_value = input("would you like to search again? ('yes' or 'no') ")
     else:
         quit
 elif  program_choice == 2 :
